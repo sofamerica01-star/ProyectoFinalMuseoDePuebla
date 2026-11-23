@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El mural que se desvanece | Patrimonio cultural de Puebla</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="azulejos" aria-hidden="true"></div>
+<div class="app">
+<header class="barra-sup">
+  <button type="button" id="marca" class="marca">El mural que se desvanece</button>
+  <nav id="menu" class="menu" role="tablist" aria-label="Secciones de la aplicación"><button type="button" role="tab" data-t="inicio" aria-controls="v-inicio"><span class="ic" aria-hidden="true">🏠</span><span class="nm">Inicio</span></button><button type="button" role="tab" data-t="mural" aria-controls="v-mural"><span class="ic" aria-hidden="true">🎨</span><span class="nm">Mural</span></button><button type="button" role="tab" data-t="archivo" aria-controls="v-archivo"><span class="ic" aria-hidden="true">📚</span><span class="nm">Archivo</span></button><button type="button" role="tab" data-t="agentes" aria-controls="v-agentes"><span class="ic" aria-hidden="true">🧭</span><span class="nm">Agentes</span></button><button type="button" role="tab" data-t="experimenta" aria-controls="v-experimenta"><span class="ic" aria-hidden="true">🧪</span><span class="nm">Experimenta</span></button><button type="button" role="tab" data-t="acciones" aria-controls="v-acciones"><span class="ic" aria-hidden="true">✋</span><span class="nm">Acciones</span></button><button type="button" role="tab" data-t="memoria" aria-controls="v-memoria"><span class="ic" aria-hidden="true">🕯️</span><span class="nm">Memoria</span></button><button type="button" role="tab" data-t="fuentes" aria-controls="v-fuentes"><span class="ic" aria-hidden="true">🔗</span><span class="nm">Fuentes</span></button></nav>
+</header>
+<div id="vistas">
+<section class="vista" id="v-inicio" role="tabpanel" hidden>
+<div class="hero">
+  <div class="hero-txt">
+    <span class="etiqueta">Arte · Programación creativa · Conservación</span>
+    <h1>El mural que se desvanece</h1>
+    <p class="lead">Un mural vivo de partículas inspirado en el patrimonio de Puebla. Los agentes lo degradan y lo restauran; tus decisiones cambian el resultado.</p>
+    <div class="trio">
+      <div><b>Arte:</b> cada fragmento del mural es una partícula que puede dispersarse o volver.</div>
+      <div><b>Programación creativa:</b> los agentes perciben, buscan y deciden con reglas simples.</div>
+      <div><b>Conservación:</b> la inversión y la presión sobre el patrimonio cambian lo que permanece.</div>
+    </div>
+    <p><button type="button" id="comenzar" class="cta">Comenzar la exploración →</button></p>
+  </div>
+  <div><div class="mosaico" id="mosaico"></div><p class="pie">Toca un lugar para verlo cobrar vida en el mural.</p></div>
+</div>
+<div class="contenido"><section class="bloque" id="explora">
+    <span class="etiqueta">Explora · Aprende · Intervén</span>
+    <h2>El patrimonio no se conserva solo</h2>
+    <p>La conservación requiere cuidado cotidiano, investigación, participación comunitaria y recursos. Esta simulación convierte esas relaciones en un sistema de agentes autónomos: cada agente percibe su entorno, busca objetivos, evita a otros y modifica las partículas cercanas.</p>
+    <div class="tarjetas">
+      <article class="tarjeta"><h3>Patrimonio arqueológico</h3><p>La Gran Pirámide de Cholula es un conjunto monumental con una larga historia. Protegerlo implica cuidar sus estructuras, su entorno y los significados que las comunidades le atribuyen.</p></article>
+      <article class="tarjeta"><h3>Patrimonio arquitectónico</h3><p>Templos, edificios históricos y espacios urbanos necesitan mantenimiento preventivo, documentación y uso responsable para que permanezcan vivos.</p></article>
+      <article class="tarjeta"><h3>Patrimonio vivo</h3><p>La cocina tradicional, los oficios, las fiestas y los conocimientos se transmiten entre generaciones. Las comunidades son protagonistas de su continuidad.</p></article>
+    </div>
+  </section></div>
+</section>
+<section class="vista" id="v-mural" role="tabpanel" hidden>
+<main>
+  <div class="col"><div class="marco"><canvas id="lienzo" aria-label="Mural formado por miles de partículas que representa un lugar patrimonial de Puebla, con agentes que lo borran y lo restauran"></canvas></div>
+  <section class="panel-lugar" aria-live="polite" aria-label="Lugar y suceso actual">
+    <span class="etiqueta" id="evTipo"></span>
+    <h2 id="lugarNombre"></h2>
+    <p><b id="evTitulo"></b> <span id="evTexto"></span></p>
+    <p class="vars" id="evVars"></p>
+    <p id="evFx"></p>
+    <p id="evMsg"></p>
+    <p id="evQ"></p>
+    <p id="evRec"></p>
+    <p id="evSentido"></p>
+    <p><a class="enlace" id="evLink" href="https://whc.unesco.org/en/list/416/" target="_blank" rel="noopener noreferrer">Fuente</a></p>
+    <p><button type="button" id="evFicha" data-id="cholula">Ver ficha en el Archivo vivo ↓</button></p>
+    <p class="pie">ODS 11 · Meta 11.4. Los sucesos son situaciones simbólicas e ilustrativas, no hechos documentados sobre el estado real de un sitio.</p>
+  </section></div>
+  <aside>
+    <div class="dato"><span>Patrimonio conservado</span><span id="pct">100%</span></div>
+    <p id="mensaje" aria-live="polite"></p>
+    <canvas id="spark" width="300" height="56"></canvas>
+    <p class="pie">Evolución de la conservación en el tiempo</p>
+    <label for="inv">Inversión en conservación: <output id="invv">35</output>%</label>
+    <input id="inv" type="range" min="0" max="100" value="35">
+    <label for="pres">Presión sobre el patrimonio: <output id="presv">8</output></label>
+    <input id="pres" type="range" min="0" max="30" value="8">
+    <label for="lugar">Escenario patrimonial</label>
+    <select id="lugar"></select>
+    <div class="botones"><button id="pausa">Pausar</button><button id="reinicio">Restaurar todo</button></div>
+    <div class="acciones-extra"><button id="eventoRandom" type="button">✨ Suceso aleatorio</button></div>
+    <p class="pie">Cada suceso aleatorio cambia de escenario patrimonial, ajusta los controles y activa un efecto visual.</p>
+    <ul class="leyenda">
+      <li><span class="ico" data-icos="humo,petroleo,basura"></span><span><b id="nb">0</b> contaminantes: humo, petróleo y basura que degradan el patrimonio</span></li>
+      <li><span class="ico" data-icos="persona,institucion"></span><span><b id="ng">0</b> guardianes: personas e instituciones que lo protegen</span></li>
+    </ul>
+    <p class="meta">Meta 11.4 de los ODS: redoblar los esfuerzos para proteger y salvaguardar el patrimonio cultural y natural del mundo. El indicador 11.4.1 mide el gasto per cápita en su preservación; aquí lo representa el control de inversión.</p>
+  </aside>
+</main>
+</section>
+<section class="vista" id="v-archivo" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque" id="archivo">
+    <span class="etiqueta">Explora · Comprende · Experimenta · Reflexiona</span>
+    <h2>Archivo vivo del patrimonio</h2>
+    <p>Elige un lugar o una manifestación cultural. El archivo también cambia cuando el mural cambia de escenario.</p>
+    <div class="chips" id="fichaChips" aria-label="Fichas patrimoniales"></div>
+    <div class="ficha">
+      <div class="tabs" id="fichaModos" role="tablist" aria-label="Modos de exploración"><button type="button" role="tab" data-m="comprende">Comprende</button><button type="button" role="tab" data-m="experimenta">Experimenta</button><button type="button" role="tab" data-m="reflexiona">Reflexiona</button></div>
+      <div id="fichaCuerpo" role="tabpanel"></div>
+    </div>
+  </section></div>
+</section>
+<section class="vista" id="v-agentes" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque">
+  <span class="etiqueta">Programación creativa</span>
+  <h2>Entiende a los agentes</h2>
+  <p>Estos comportamientos existen en el código del mural. La relación con el patrimonio es una analogía artística: los agentes no representan literalmente a personas, comunidades ni procesos reales de conservación.</p>
+  <div class="chips" id="agChips" aria-label="Comportamientos"></div>
+  <div class="ag-grid">
+    <div id="agTexto"></div>
+    <div><canvas id="demoAg" width="480" height="300" aria-label="Demostración del comportamiento seleccionado"></canvas>
+      <div class="acciones-extra" style="margin-top:10px"><button type="button" id="demoSep" hidden>Separación: activada</button><button type="button" id="agVer" data-ov="obj">Ver en el mural real →</button></div></div>
+  </div></section><section class="bloque" id="panelAg">
+  <span class="etiqueta">Panel de exploración</span>
+  <h2>Los cuatro agentes del mural</h2>
+  <p>Elige un agente para saber qué representa, qué busca y qué reglas de programación usa. Puedes activar o desactivar sus comportamientos.</p>
+  <div class="chips" id="tipoChips" aria-label="Agentes"></div>
+  <div class="ag-grid"><div id="tipoTexto"></div><div id="tipoCtrl"></div></div>
+</section></div>
+</section>
+<section class="vista" id="v-experimenta" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque" id="decisiones">
+  <span class="etiqueta">Decide y observa</span>
+  <h2>Tres escenarios de decisión</h2>
+  <p>Elige un lugar, un escenario y una decisión: el mural cambia con una capa visual y valores de inversión y presión. Son simulaciones artísticas, no predicciones ni evaluaciones del estado real de los monumentos.</p>
+  <label for="decLugar">Lugar sobre el que decides</label><select id="decLugar"></select>
+  <div class="chips" id="decEsc" aria-label="Escenarios"></div>
+  <div id="decCuerpo"></div>
+</section>
+  <section class="bloque">
+  <span class="etiqueta">Retos · Modelo simplificado</span>
+  <h2>Experimenta</h2>
+  <p>Cada reto prepara el mural con un escenario, valores de inversión y presión y un efecto visual, usando el sistema existente. Es una interpretación artística y un modelo simplificado, no una predicción científica del deterioro real de un lugar.</p>
+  <div class="tarjetas" id="retoGrid"></div>
+  <p class="pie" id="retoAplicado" style="margin-top:10px"></p></section><section class="bloque" id="laboratorio">
+    <span class="etiqueta">Laboratorio de decisiones</span>
+    <h2>¿Qué podría pasar en Puebla?</h2>
+    <p>Activa un escenario al azar y observa cómo cambia el equilibrio entre los agentes que degradan el mural y quienes lo protegen. Es una interpretación artística, no una predicción científica del estado real de un sitio patrimonial.</p>
+    <div id="datoAleatorio" aria-live="polite">Pulsa el botón para descubrir un escenario de conservación.</div>
+    <div class="acciones-extra" style="margin-top:12px"><button id="escenarioRandom" type="button">Generar escenario</button><button id="ideaRandom" type="button">Dame una idea de cuidado</button><button id="irMural" type="button">Ver en el mural →</button></div>
+  </section></div>
+</section>
+<section class="vista" id="v-acciones" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque" id="catAcc">
+  <span class="etiqueta">Tres escalas de cuidado</span>
+  <h2>Individuales, comunitarias e institucionales</h2>
+  <p>La conservación no depende solo de las instituciones: también de la participación social. Despliega cada acción para conocer su importancia.</p>
+  <div class="chips" id="catChips" aria-label="Escalas de acción"></div><div id="catCuerpo"></div>
+</section>
+  <section class="bloque">
+  <span class="etiqueta">Aprende haciendo</span>
+  <h2>Acciones para conservar</h2>
+  <p id="accProg"></p>
+  <div class="chips" id="accChips" aria-label="Actividades"></div>
+  <div class="ficha" id="accEspacio"></div></section>
+  <section class="bloque"><h2>Mis reflexiones y propuestas</h2>
+  <p>Aquí aparecen las que escribas en «Reflexiona» del Archivo vivo. Se guardan solo en este navegador.</p>
+  <ul id="refListaAcc"></ul><p><button type="button" id="irReflexion">Escribir una reflexión →</button></p></section></div>
+</section>
+<section class="vista" id="v-memoria" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque">
+  <span class="etiqueta">Cierre del recorrido</span>
+  <h2>Lo que decidimos conservar</h2>
+  <p>El mural final reúne tus decisiones y tus palabras: una memoria colectiva hecha de elecciones individuales.</p>
+  <h3>A. Resumen del recorrido</h3><div id="resumen"></div>
+  <p><button type="button" data-ir="experimenta" id="irDec">Tomar decisiones en «Experimenta» →</button></p>
+  <h3>B. Reflexión personal</h3>
+  <div class="chips" id="finQ" aria-label="Preguntas de reflexión"></div>
+  <label for="finTxt" id="finEt"></label>
+  <textarea id="finTxt" rows="4" maxlength="300" placeholder="Escribe tu reflexión (máx. 300 caracteres; la más reciente se dibuja en el mural, hasta 110 caracteres)"></textarea>
+  <p><button type="button" id="finGuardar">Guardar y sumar al mural</button></p>
+  <p class="pie" id="finMsg"></p><ul id="finLista"></ul>
+  <h3>C. Memoria del usuario</h3>
+  <canvas id="muralFinal" width="800" height="500" aria-label="Mural final con tus decisiones y reflexiones"></canvas>
+  <p class="pie" id="memAviso"></p>
+  <p><button type="button" id="verDatos">Consultar mis datos</button> <button type="button" id="borrarDatos" class="peligro">Eliminar mis datos</button></p>
+  <pre id="datosVista" hidden></pre>
+</section></div></section>
+<section class="vista" id="v-fuentes" role="tabpanel" hidden>
+<div class="contenido"><section class="bloque" id="ods">
+    <span class="etiqueta">Agenda 2030</span>
+    <h2>ODS 11 · Meta 11.4</h2>
+    <p>La meta 11.4 propone fortalecer los esfuerzos para proteger y salvaguardar el patrimonio cultural y natural del mundo. Su indicador 11.4.1 mide el gasto per cápita en preservación, protección y conservación. En este proyecto, el control de inversión es una metáfora artística de ese esfuerzo; el mural no mide ni predice indicadores reales.</p>
+    <a class="enlace" href="https://sdgs.un.org/goals/goal11" target="_blank" rel="noopener noreferrer">Naciones Unidas · Objetivo 11</a> ·
+    <a class="enlace" href="https://uis.unesco.org/en/topic/sustainable-development-goal-11-4" target="_blank" rel="noopener noreferrer">UNESCO UIS · Indicador 11.4.1</a>
+  </section>
+  <section class="bloque"><span class="etiqueta">Sobre el proyecto</span><h2>Programación creativa y conservación</h2>
+  <p>Un mural vivo inspirado en el patrimonio de Puebla (la Pirámide de Cholula, el Centro Histórico, la Catedral, la Biblioteca Palafoxiana, los barrios, la Talavera y el paisaje cultural): cada fragmento es una partícula y cada agente toma decisiones según lo que percibe. Los contaminantes dispersan el paisaje; las personas y las instituciones lo restauran. Explora, intervén y descubre cómo las decisiones colectivas ayudan a conservar el patrimonio cultural y natural de Puebla.</p>
+  <p>La relación es una metáfora: las reglas simples de los agentes se parecen a decisiones de cuidado o de desgaste, pero el mural no mide ni predice el estado real de ningún sitio.</p></section>
+  <section class="bloque" id="referencias">
+    <span class="etiqueta">Fuentes para profundizar</span>
+    <h2>Referencias y ligas</h2>
+    <p>Consulta estas fuentes institucionales para ampliar la información sobre conservación, patrimonio y desarrollo sostenible.</p>
+    <div class="tarjetas">
+      <article class="tarjeta"><h3>UNESCO · Patrimonio Mundial</h3><p>Información sobre la protección del patrimonio cultural y natural y la cooperación internacional.<br><a class="enlace" href="https://whc.unesco.org/" target="_blank" rel="noopener noreferrer">Visitar UNESCO World Heritage</a></p></article>
+      <article class="tarjeta"><h3>INAH · Puebla</h3><p>Institución mexicana dedicada a investigar, conservar y difundir el patrimonio arqueológico, antropológico e histórico.<br><a class="enlace" href="https://www.inah.gob.mx/" target="_blank" rel="noopener noreferrer">Visitar el INAH</a></p></article>
+      <article class="tarjeta"><h3>ONU · Objetivo 11</h3><p>La meta 11.4 propone redoblar esfuerzos para proteger y salvaguardar el patrimonio cultural y natural.<br><a class="enlace" href="https://sdgs.un.org/goals/goal11" target="_blank" rel="noopener noreferrer">Consultar el ODS 11</a></p></article>
+      <article class="tarjeta"><h3>UNESCO · Patrimonio inmaterial</h3><p>Marco para reconocer y salvaguardar prácticas, conocimientos y expresiones transmitidas por las comunidades.<br><a class="enlace" href="https://ich.unesco.org/" target="_blank" rel="noopener noreferrer">Explorar patrimonio vivo</a></p></article>
+      <article class="tarjeta"><h3>Ayuntamiento de Puebla</h3><p>Portal oficial para conocer información y acciones vinculadas con el municipio y su centro histórico.<br><a class="enlace" href="https://www.pueblacapital.gob.mx/" target="_blank" rel="noopener noreferrer">Visitar Puebla Capital</a></p></article>
+      <article class="tarjeta"><h3>The Nature of Code</h3><p>Referencia técnica para estudiar movimiento, fuerzas, agentes autónomos y comportamientos emergentes.<br><a class="enlace" href="https://natureofcode.com/autonomous-agents/" target="_blank" rel="noopener noreferrer">Leer sobre agentes autónomos</a></p></article>
+    </div>
+  </section>
+  <section class="bloque"><span class="etiqueta">Por lugar</span><h2>Fuentes de cada ficha</h2><div class="tarjetas" id="fuentesFichas"></div></section>
+  <section class="bloque"><span class="etiqueta">Créditos</span><h2>Imágenes</h2>
+  <p>Todas las imágenes de las fichas, del mosaico de inicio y del mural son ilustraciones generadas por código (Canvas) para este proyecto. No se usan fotografías ni imágenes externas, por eso la aplicación funciona sin conexión; solo los enlaces requieren internet.</p></section>
+  <footer>Proyecto artístico interactivo inspirado en la Meta 11.4 de los Objetivos de Desarrollo Sostenible. La simulación es una metáfora visual y educativa.</footer></div>
+</section>
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
